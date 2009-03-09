@@ -1,0 +1,13 @@
+<h1>Project - (Using Prototype.js)</h1>
+
+<%= @project.name %><br /><br />
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Delete', project_path(@project), :method => :delete, :confirm => "Are you sure?" %>
+
+<h2>Tasks</h2>
+<% for task in @project.tasks %>
+  [&nbsp;<%= task.name %>&nbsp;] , &nbsp;
+<% end %>
+
+<br /><br />
+<%= link_to 'Back', projects_path %>

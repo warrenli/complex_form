@@ -1,0 +1,36 @@
+<% content_for :head do %>
+<script type="text/javascript">
+$(document).ready(function($) {
+  $("#add_task").click(function(e){
+    e.preventDefault();
+    $("#tasks").append('<%= escape_javascript(render(:partial => 'task_new')) %>');
+  });
+
+  $('a.remove_task_new').livequery(function(){
+    $(this).click(function(e){
+       e.preventDefault();
+       $(this).parent().remove();
+    });
+  });
+})
+</script>
+<% end %>
+<h1>Editing project - (Using jQuery)</h1>
+
+<% form_for([:jquery,@project]) do |f| %>
+  <%= f.error_messages %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br/>
+
+    <h2>Tasks</h2>
+    <div id="tasks">
+    <%= render :partial=> 'task', :collection=> @project.tasks %>
+    </div>
+    <br/>
+    <a href="#" id="add_task">Add a task</a>
+    <br/><br/>
+    <%= f.submit 'Update' %>
+<% end %>
+<br />
+<%= link_to 'Show', jquery_project_path(@project) %> |
+<%= link_to 'Back', jquery_projects_path %>

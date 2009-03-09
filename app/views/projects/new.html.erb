@@ -1,0 +1,27 @@
+<h1>New project - (Using Prototype.js)</h1>
+
+<% form_for @project do |f| %>
+  <%= f.error_messages %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br/>
+
+    <h2>Tasks</h2>
+    <div id="tasks">
+    <%= render :partial=> 'task', :collection=> @project.tasks %>
+    <% # f.fields_for :tasks do |task_form| %>
+      <!-- div class="task" -->
+      <% # = task_form.label :name, 'Task' %>
+      <% # = task_form.text_field :name %>
+      <% # = link_to_function "remove", "this.up('.task').remove()" %><br />
+      <!-- /div -->
+    <% # end %>
+    </div>
+    <br />
+    <%= link_to_function "Add a task" do |page|
+        page.insert_html :bottom, :tasks, :partial => 'task_new'
+        end %>
+    <br/><br/>
+    <%= f.submit 'Create Project' %>
+<% end %>
+<br />
+<%= link_to 'Back', projects_path %>

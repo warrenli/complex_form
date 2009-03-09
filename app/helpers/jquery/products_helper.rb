@@ -1,0 +1,2 @@
+module Jquery::ProductsHelper
+end

@@ -1,0 +1,21 @@
+<h1>Listing projects - (Using jQuery)</h1>
+
+<% @projects.each do |project| %>
+   <h2>Project</h2>
+  <%= project.name %><br /><br />
+  <%= link_to 'Edit', edit_jquery_project_path(project) %> |
+  <%= link_to 'Show', jquery_project_path(project) %>
+
+  <h2>Tasks</h2>
+  <% for task in project.tasks %>
+    [&nbsp;<%= task.name %>&nbsp;] , &nbsp;
+  <% end %>
+  <hr />
+<% end %>
+</table>
+
+<br />
+<br />
+<%= link_to 'New project', new_jquery_project_path %>
+<br /><br />
+<%= link_to 'Switch from jQuery to Prototype.js', projects_path %>

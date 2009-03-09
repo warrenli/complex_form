@@ -1,0 +1,14 @@
+<% fields_for "project[tasks_attributes][]", task do |f| %>
+  <% unless f.object.new_record? %>
+    <%= f.label :_delete, 'Remove Task?: ', :index => nil %>
+    <%= f.check_box :_delete, :index => nil %> &rarr;
+    <%= f.text_field :name, :index => nil %>&nbsp;
+    <%= f.hidden_field :id, :index => nil %>(ID: <%= f.object.id %>)<br />
+  <% else %>
+  <div class="task_new">
+    <%= f.label :name, 'New Task:' %>
+    <%= f.text_field :name %>
+    <a href="#" class="remove_task_new">Remove</a><br />
+  </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,21 @@
+<h1>Editing project - (Using Prototype.js)</h1>
+
+<% form_for(@project) do |f| %>
+  <%= f.error_messages %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br/>
+
+    <h2>Tasks</h2>
+    <div id="tasks">
+    <%= render :partial=> 'task', :collection=> @project.tasks %>
+    </div>
+    <br />
+    <%= link_to_function "Add a task" do |page|
+        page.insert_html :bottom, :tasks, :partial => 'task_new'
+        end %>
+   <br/><br/>
+    <%= f.submit 'Update' %>
+<% end %>
+<br />
+<%= link_to 'Show', @project %> |
+<%= link_to 'Back', projects_path %>
